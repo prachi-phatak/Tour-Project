@@ -63,3 +63,35 @@ ctaTop.addEventListener("click", () => {
         behavior: "smooth"
     });
 });
+
+const toggle = document.getElementById("theme-toggle");
+const label = document.getElementById("theme-label");
+
+// Load saved theme
+const savedTheme = localStorage.getItem("theme");
+
+if (savedTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    toggle.checked = true;
+} else {
+    document.body.classList.remove("dark-mode");
+    toggle.checked = false;
+}
+
+// Always show "Mode" on page load
+label.textContent = "Mode";
+
+// Change text only after user clicks the toggle
+toggle.addEventListener("change", function () {
+
+    if (this.checked) {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("theme", "dark");
+        label.textContent = "Dark Mode";
+    } else {
+        document.body.classList.remove("dark-mode");
+        localStorage.setItem("theme", "light");
+        label.textContent = "Light Mode";
+    }
+
+});
